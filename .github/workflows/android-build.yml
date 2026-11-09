@@ -19,16 +19,16 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-
       - name: Find project ZIP
         run: |
-          ZIP_FILE=$(find . -maxdepth 1 -iname '*.zip' | head -n 1)
-          if [ -z "$ZIP_FILE" ]; then
-            echo "Project ZIP not found"
+          ZIP_FILE="./Nattawut_Android15_Fix.zip"
+          if [ ! -f "$ZIP_FILE" ]; then
+            echo "Project ZIP not found: $ZIP_FILE"
             exit 1
           fi
           mkdir extracted
           unzip -q "$ZIP_FILE" -d extracted
+
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
